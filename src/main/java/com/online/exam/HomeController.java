@@ -1,5 +1,6 @@
 package com.online.exam;
 
+import java.io.Reader;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "login";
 	}
 	
 	@RequestMapping(value="/register")
@@ -73,26 +74,23 @@ public class HomeController {
 		user.setEnabled(true);
 		userService.saveUser(user);		
 		role.setUser(user);
-		roleService.saveRole(role);
-		System.out.println("Updated Successfully");
+		roleService.saveRole(role);		
 		return "redirect:/login";
 	}
 	
-	@RequestMapping(value="/clogin")
-	public String login(@RequestParam(value="error",required=false)String error,Model model){
-		if(error!=null)
-			model.addAttribute("error", "Invalid Username or Password");
-		return "login";
-	}
-	
 	@RequestMapping(value="/login")
-	public String loggedin(){
+	public String loggedin(@RequestParam(value="error",required=false)String error,@RequestParam(value="logout",required=false)String logout,Model model){
+		if(error!=null){
+			model.addAttribute("error", "Invalid Username or Password.");
+		}
+		if(logout!=null){
+			model.addAttribute("msg", "You have been Logout Successfully.");
+		}
 		return "login";
 	}
 	
 	@RequestMapping(value="/admin")
-	public String admin(){
-		System.out.println("inside admin");
+	public String admin(){		
 		return "admin";
 	}
 }
