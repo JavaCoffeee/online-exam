@@ -1,6 +1,7 @@
 package com.online.exam.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,10 @@ public class User {
 	private String password;
 	private boolean enabled;	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user")
-	private List<Role> roles = new ArrayList<Role>();	
+	private List<Role> roles = new ArrayList<Role>();
+	private String email;
+	private Date dob;
+	private char gender;
 	
 	public String getUserName() {
 		return userName;
@@ -43,5 +47,23 @@ public class User {
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}	
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Date getDob() {
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}		
 }

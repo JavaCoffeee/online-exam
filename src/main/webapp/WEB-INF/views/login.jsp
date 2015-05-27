@@ -31,11 +31,19 @@
 
 			<button class="btn btn-lg btn-success btn-block" type="submit">Sign
 				In</button>
+<<<<<<< HEAD
 			<!-- <a href="forgotpassword" class="btn btn-lg btn-danger btn-block">Forgot Password</a>
 			<a href="register" class="btn btn-lg btn-primary btn-block">Sign Up</a> -->
 
 			<a href="forgotpassword" class="forgot-password">Forgot Password</a>
 			<a href="register" class="sign-up">Sign Up</a> <input type="hidden"
+=======
+			<a href="forgotpassword" class="btn btn-lg btn-danger btn-block">Forgot Password</a>
+			<a href="register" class="btn btn-lg btn-primary btn-block">Create Account</a>
+
+			<!-- <a href="forgotpassword" class="forgot-password">Forgot Password</a>
+			<a href="register" class="sign-up">Create Account</a> --> <input type="hidden"
+>>>>>>> dev
 				name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 

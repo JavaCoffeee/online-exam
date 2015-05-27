@@ -81,7 +81,7 @@ public class HomeController {
 	@RequestMapping(value="/login")
 	public String loggedin(@RequestParam(value="error",required=false)String error,@RequestParam(value="logout",required=false)String logout,Model model){
 		if(error!=null){
-			model.addAttribute("error", "Invalid Username or Password.");
+			model.addAttribute("error", "Invalid Username or Password");
 		}
 		if(logout!=null){
 			model.addAttribute("msg", "You have been Logout Successfully.");
