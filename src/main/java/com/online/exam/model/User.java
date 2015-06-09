@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,8 +20,7 @@ public class User {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="user")
 	private List<Role> roles = new ArrayList<Role>();
 	private String email;
-	private Date dob;
-	private char gender;
+	private Date dob;	
 	
 	public String getUserName() {
 		return userName;
@@ -59,11 +57,5 @@ public class User {
 	}
 	public void setDob(Date dob) {
 		this.dob = dob;
-	}
-	public char getGender() {
-		return gender;
-	}
-	public void setGender(char gender) {
-		this.gender = gender;
-	}		
+	}			
 }

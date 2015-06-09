@@ -4,6 +4,7 @@
 <title>Sign In</title>
 <link rel="stylesheet" href="resources/css/default/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/signin.css" />
+<link rel="icon" href="resources/img/favicon.ico">	
 </head>
 <body onload='document.loginForm.username.focus();'>
 

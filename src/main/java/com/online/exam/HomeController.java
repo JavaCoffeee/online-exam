@@ -1,5 +1,6 @@
 package com.online.exam;
 
+import java.io.File;
 import java.io.Reader;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,7 @@ import com.online.exam.model.Role;
 import com.online.exam.model.User;
 import com.online.exam.service.RoleService;
 import com.online.exam.service.UserService;
+import com.online.exam.util.MailUtil;
 
 /**
  * Handles requests for the application home page.
@@ -42,7 +46,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model) {	
+		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -52,7 +57,14 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "login";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();		
+		if(name.equals("anonymousUser")){
+			model.addAttribute("value", "SignIn");
+		}else{
+			model.addAttribute("value", name);
+		}
+		return "home";
 	}
 	
 	@RequestMapping(value="/register")
@@ -74,7 +86,8 @@ public class HomeController {
 		user.setEnabled(true);
 		userService.saveUser(user);		
 		role.setUser(user);
-		roleService.saveRole(role);		
+		roleService.saveRole(role);	
+		MailUtil.sendMsg(user.getEmail());
 		return "redirect:/login";
 	}
 	
