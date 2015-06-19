@@ -21,7 +21,21 @@ public class User {
 	private List<Role> roles = new ArrayList<Role>();
 	private String email;
 	private Date dob;	
+	private boolean verified;
+	private String verificationString;
 	
+	public boolean isVerified() {
+		return verified;
+	}
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
+	public String getVerificationString() {
+		return verificationString;
+	}
+	public void setVerificationString(String verificationString) {
+		this.verificationString = verificationString;
+	}
 	public String getUserName() {
 		return userName;
 	}

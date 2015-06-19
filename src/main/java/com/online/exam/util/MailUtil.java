@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMultipart;
 
 
 public class MailUtil {
-	public static void sendMsg(String recepient){
+	public static void sendMsg(String recepient,String link){
 		Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.stmp.user", "abcda5699@gmail.com");          
@@ -43,7 +43,7 @@ public class MailUtil {
         });
         String[] to = {recepient};
         String from = "abcda5699@gmail.com";
-        String subject = "Testing...";
+        String subject = "Verification Link";
         MimeMessage msg = new MimeMessage(session);
         try {
             msg.setFrom(new InternetAddress(from));
@@ -61,7 +61,7 @@ public class MailUtil {
             BodyPart messageBodyPart = new MimeBodyPart();
 
             // Fill the message
-            messageBodyPart.setText("This is message body");
+            messageBodyPart.setText(link);
 
             // Create a multipar message
             Multipart multipart = new MimeMultipart();

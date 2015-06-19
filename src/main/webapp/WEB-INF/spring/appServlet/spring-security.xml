@@ -36,7 +36,7 @@
 	  	<password-encoder hash="bcrypt"></password-encoder>
 		<jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
-		    "select username,password, enabled from tuser where username=?"
+		    "select username,password, enabled from tuser where username=? and verified = true"
 		  authorities-by-username-query=
 		    "select username, role from trole where username =?  " />  
 	  </authentication-provider>

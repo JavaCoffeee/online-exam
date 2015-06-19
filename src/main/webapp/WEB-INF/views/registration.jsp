@@ -29,9 +29,7 @@
 			$("#dob").datepicker({
 				changeMonth: true,
 			    changeYear: true});
-		});
-		
-		
+		});		
 		
 		$(function(){			
 			$("#registration-form").validate({
